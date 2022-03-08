@@ -1,23 +1,109 @@
 <!DOCTYPE html>
 <html lang="ee">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css" >
     
+    <title>Prototüüp</title>
+</head>
+
+<body>
+    <div class="menu-hori">
+        <a href="#" class="menu-heading">VOCO</a>
+        <ul class="menu-list">
+            <li class="menu-item"><a href="#" class="menu-link">Avaleht</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">Leht2</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">Leht3</a></li>
+        </ul>
+    </div>
+    
+    <div class="banner" id="banner">
+        <h1>
+            Test test test
+        </h1>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/JavaScript">
+    	// const url = "https://siseveeb.voco.ee/veebilehe_andmed/tunniplaan?grupp=1433&nadal=2022-03-07";
+    	$.getJSON("https://siseveeb.voco.ee/veebilehe_andmed/tunniplaan?grupp=1433&nadal=2022-03-07", function(data) {
+    // JSON result in `data` variable
+    document.getElementById("banner").innerHTML = data["tunnid"]["2022-03-07"][1]["aine"];
+});
+  </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css" >
     <title>Prototüüp</title>
     
 </head>
 <body>
+    header
+    <header class="header_area">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="index.html" class="voco-logo">Avaleht</a>
+                    <a href="erialad.html">Erialad</a>
+                </div>
+            </div>
+        </div>
+        
+        rida
+        <div class="row">
+            <div class="col-1">
+                <nav class="navbar">
+                    <button class="navbar-tog" type="button"><i class="fa fa-bars"></i>Test1</button>
+                    <div class="collapse navbar-collapse" id="voco-nav">
+                        <ul class="navbar-nav" id="voco-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Test1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Test2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Test3</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
     
-    
-    <!--
+
     <h1>Yoo wuss poppin</h1>
     <ul>
         <li><a class="current" href="index.html">Avaleht</a></li>
         <li><a href="leht2.html">Erialad?</a></li>
         <li><a href="leht3.html">Tunniplaanid</a></li>
     </ul>
-    -->
+
 </body>
+-->
+
 </html>
 
+
+    
