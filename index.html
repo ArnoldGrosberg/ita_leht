@@ -5,9 +5,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../css/style.css" >
+    <link rel="stylesheet" href="./style.css" >
     
     <title>Prototüüp</title>
+    <style>.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}</style>
 </head>
 
 <body>
@@ -18,7 +44,17 @@
             <li class="menu-item"><a href="#" class="menu-link">Leht2</a></li>
             <li class="menu-item"><a href="#" class="menu-link">Leht3</a></li>
         </ul>
-    </div>
+        <div class="dropdown">
+        <select class="select"id="eriala"> 
+	<option value="1529" selected>ITA20</option> 
+	<option value="1433">ITA19</option> 
+	<option value="1508">ITS20</option> 
+</select> 
+ </div>
+<p>Right arrow: <button type="button" id="leftBtn"><i class="arrow right"></i></p></button>
+<p>Left arrow: <button type="button" id="rightBtn"><i class="arrow left"></i></p></button>
+<p>Up arrow: <i class="arrow up"></i></p>
+<p>Down arrow: <i class="arrow down"></i></p>
     
     <div class="banner" id="banner1">
         <h1>
@@ -48,11 +84,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script type="text/JavaScript">
+    	// Listens for list item click and then shows the right content about the clicked item.
+    	$('#eriala').on('click', function(event) {
+    		var value = $(this).val();
+    		$('#leftBtn').on('click', function(event) {
+    			
+    			}
+    		$('#rightBtn').on('click', function(event) {
 
-    	// Siseveeb's tunniplaan API
-    	var url = "https://siseveeb.voco.ee/veebilehe_andmed/tunniplaan?grupp=1433&nadal=2022-03-07";
-    	
-    	// Reads the Siseveeb's tunniplaan API
+    			}
+ 	// Siseveeb's tunniplaan API
+var url = "https://siseveeb.voco.ee/veebilehe_andmed/tunniplaan?grupp="+value+"&nadal=2022-03-07";
+
+// Reads the Siseveeb's tunniplaan API
     	$.getJSON(url, function(data) {
 
     // Variables
@@ -65,6 +109,33 @@
 
     // Loop for getting the week information
     while (i < paev + 5) {
+    	// clears the week's day data for adding new data.
+
+    	// console.log(i2)
+    	/*
+    	switch (i2) {
+  case 1:
+    document.getElementById("banner" + i2).innerHTML = "<h1> Monday </h1>";
+    break;
+  case 2:
+     document.getElementById("banner" + i2).innerHTML = "<h1> Tuesday </h1>";
+    break;
+  case 3:
+    document.getElementById("banner" + i2).innerHTML = "<h1> Wednesday </h1>";
+    break;
+  case 4:
+    document.getElementById("banner" + i2).innerHTML = "Thursday";
+    break;
+  case 5:
+    document.getElementById("banner" + i2).innerHTML = "Friday";
+    break;
+  case 6:
+    document.getElementById("banner" + i2).innerHTML = "Saturday";
+    case 7:
+    document.getElementById("banner" + i2).innerHTML = "Sunday";
+    break;
+}
+    	*/
     	var paevStr = i;
     	if (paevStr < 10) {paevStr = '0' + paevStr};
     	var tunniPikkus = data["tunnid"][kuupaev0 + paevStr].length;
@@ -74,7 +145,11 @@
     	while (i3 < tunniPikkus) {
 
     		// Gets the information about the day and displays it.
-    		document.getElementById("banner" + i2).innerHTML += data["tunnid"][kuupaev0 + paevStr][i3]["algus"] +" kuni " +data["tunnid"][kuupaev0 + paevStr][i3]["lopp"]+ " on neil selline aine: "+data["tunnid"][kuupaev0 + paevStr][i3]["aine"] + '<br>';
+    		document.getElementById("banner" + i2).innerHTML += '<b>'+ data["tunnid"][kuupaev0 + paevStr][i3]["algus"] +" - " + data["tunnid"][kuupaev0 + paevStr][i3]["lopp"]
+    		+ "</b> on: <b>" + data["tunnid"][kuupaev0 + paevStr][i3]["opetaja"]
+    		+"</b> - " +data["tunnid"][kuupaev0 + paevStr][i3]["aine"]
+    		+" - ruum: <b>"+data["tunnid"][kuupaev0 + paevStr][i3]["ruum"]
+    		+'</b><br>';
     		i3++;
     	}
     	i++;
@@ -82,6 +157,8 @@
     }
 
 });
+}) 
+    	
   </script>
 </body>
 
