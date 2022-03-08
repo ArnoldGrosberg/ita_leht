@@ -20,17 +20,58 @@
         </ul>
     </div>
     
-    <div class="banner" id="banner">
+    <div class="banner" id="banner1">
         <h1>
-            Test test test
+            Esmaspäev
+        </h1>
+    </div>
+    <div class="banner" id="banner2">
+        <h1>
+            Teisipäev
+        </h1>
+    </div>
+    <div class="banner" id="banner3">
+        <h1>
+            Kolmapäev
+        </h1>
+    </div>
+    <div class="banner" id="banner4">
+        <h1>
+            Neljapäev
+        </h1>
+    </div>
+    <div class="banner" id="banner5">
+        <h1>
+            Reede
         </h1>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/JavaScript">
-    	// const url = "https://siseveeb.voco.ee/veebilehe_andmed/tunniplaan?grupp=1433&nadal=2022-03-07";
-    	$.getJSON("https://siseveeb.voco.ee/veebilehe_andmed/tunniplaan?grupp=1433&nadal=2022-03-07", function(data) {
+    	var url = "https://siseveeb.voco.ee/veebilehe_andmed/tunniplaan?grupp=1433&nadal=2022-03-07";
+    	$.getJSON(url, function(data) {
     // JSON result in `data` variable
-    document.getElementById("banner").innerHTML = data["tunnid"]["2022-03-07"][1]["aine"];
+    var paev = parseInt(url.slice(-2))
+    var kuupaev0 = url.slice(-10, -2)
+    var kuupaev1 = url.slice(-10)
+    //console.log(data["tunnid"]['2022-03-07'].length)
+    // document.getElementById("banner").innerHTML = data["tunnid"]["2022-03-07"][1]["aine"];
+    var i  = paev;
+    var i2 = 1;
+    var paevStr = paev;
+    while (i < paev + 5) {
+    	var paevStr = i;
+    	if (paevStr < 10) {paevStr = '0' + paevStr};
+    	var tunniPikkus = data["tunnid"][kuupaev0 + paevStr].length;
+    	var i3 = 0;
+    	while (i3 < tunniPikkus) {
+    		document.getElementById("banner" + i2).innerHTML += data["tunnid"][kuupaev0 + paevStr][i3]["aine"] + '<br>';
+    		//document.getElementById("banner" + i2).innerHTML = data["tunnid"][kuupaev0 + paevStr][1]["aine"];
+    		i3++;
+    	}
+    	i++;
+    	i2++;
+    }
+
 });
   </script>
 </body>
